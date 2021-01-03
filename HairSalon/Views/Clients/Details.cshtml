@@ -10,4 +10,5 @@
 <h3>@Html.DisplayNameFor(model => model.ClientLastName): @Html.DisplayFor(model => model.ClientLastName)</h3>
 <!--Add stylist info-->
 <p>@Html.ActionLink("Edit client", "Edit", new { id = Model.ClientId})</p>
+<p>@Html.ActionLink("Delete client", "Delete", new { id = Model.ClientId})</p>
 <p>@Html.ActionLink("Back to clients", "Index")</p>
