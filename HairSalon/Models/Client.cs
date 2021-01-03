@@ -8,5 +8,7 @@ namespace HairSalon.Models
     public int ClientId { get; set; }
     public string ClientFirstName { get; set; }
     public string ClientLastName { get; set; }
+    public int StylistId { get; set; }
+    public virtual Stylist Stylist { get; set; }
   }
 }
