@@ -5,8 +5,9 @@
 @model HairSalon.Models.Client
 
 <h2>Edit</h2>
+<hr />
 <h4>Edit this client: @Html.DisplayFor(model => model.ClientFirstName) @Html.DisplayFor(model =>model.ClientLastName)</h4>
-
+<hr />
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model =>model.ClientId)
@@ -20,5 +21,7 @@
 
   <input type="submit" value="Save" />
 }
-
+<hr />
+<p>@Html.ActionLink("Delete client", "Delete", new { id = Model.ClientId})</p>
 <p>@Html.ActionLink("Back to clients", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
