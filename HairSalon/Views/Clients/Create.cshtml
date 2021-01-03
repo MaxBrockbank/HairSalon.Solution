@@ -11,6 +11,9 @@
     @Html.TextBoxFor(model => model.ClientFirstName)
     @Html.LabelFor(model => model.ClientLastName)
     @Html.TextBoxFor(model => model.ClientLastName)
-    <input type="submit" value="Add new client" />
+
+    @Html.LabelFor(model => model.Stylist)
+    @Html.DropDownList("StylistId")
+    <input type="submit" value="Add new client" class="btn btn-default" />
 }
 <p>@Html.ActionLink("Show all clients", "Index")</p>
