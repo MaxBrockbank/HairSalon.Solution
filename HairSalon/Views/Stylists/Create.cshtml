@@ -9,11 +9,11 @@
 <hr />
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.StylistFirstName)
-    @Html.TextBoxFor(model => model.StylistFirstName)
-    @Html.LabelFor(model => model.StylistLastName)
-    @Html.TextBoxFor(model => model.StylistLastName)
-    <input type="submit" value="Add new stylist" />
+  @Html.LabelFor(model => model.StylistFirstName)
+  @Html.TextBoxFor(model => model.StylistFirstName)
+  @Html.LabelFor(model => model.StylistLastName)
+  @Html.TextBoxFor(model => model.StylistLastName)
+  <input type="submit" value="Add new stylist" />
 }
 <hr />
 <p>@Html.ActionLink("Show all stylist", "Index")</p>
