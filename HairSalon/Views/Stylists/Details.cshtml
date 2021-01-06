@@ -1,4 +1,4 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
@@ -7,24 +7,29 @@
 
 <h2>Stylist Details</h2>
 <hr />
-<h4>@Html.DisplayNameFor(model => model.StylistFirstName): @Html.DisplayFor(model => model.StylistFirstName)</h4>
-<h4>@Html.DisplayNameFor(model => model.StylistLastName): @Html.DisplayFor(model => model.StylistLastName)</h4>
+<h4>Stylist First Name: @Html.DisplayFor(model => model.StylistFirstName)</h4>
+<h4>Stylist Last Name: @Html.DisplayFor(model => model.StylistLastName)</h4>
 
-<ul>
+
 @if (@Model.Clients.Count == 0)
 {
   <p>No clients have been added yet!</p>
 }
-
-@foreach (Client client in @Model.Clients)
-{
-  <li>@Html.ActionLink($"{client.ClientFirstName + " " + client.ClientLastName}", "Details", "Clients",new { id = client.ClientId}, null)</li>
+else{
+  <h4>Clients of this stylist:</h4>
+  <ul>
+  @foreach (var join in Model.Clients)
+  {
+  <li>@Html.ActionLink($"{@join.Client.ClientFirstName + " " + @join.Client.ClientLastName}", "Details", "Clients",new { id = join.Client.ClientId}, null)</li>
+  }
+  </ul>
 }
-</ul>
+
+
 
 <hr />
 <p>@Html.ActionLink("Add new client", "Create", "Clients")</p>
 <p>@Html.ActionLink("Edit Stylist", "Edit", new { id = Model.StylistId })</p>
 <p>@Html.ActionLink("Delete Stylist", "Delete", new { id = Model.StylistId })</p>
 <p>@Html.ActionLink("Back to all stylists", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p> *@
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

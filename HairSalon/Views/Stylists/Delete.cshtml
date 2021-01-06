@@ -1,4 +1,4 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
@@ -6,8 +6,8 @@
 
 <h2>Are you sure you want to delete this?</h2>
 <hr />
-<h5>@Html.DisplayNameFor(model => model.StylistFirstName): @Html.DisplayFor(model => model.StylistFirstName)</h5>
-<h5>@Html.DisplayNameFor(model => model.StylistLastName): @Html.DisplayFor(model => model.StylistLastName)</h5>
+<h5>Stylist First Name: @Html.DisplayFor(model => model.StylistFirstName)</h5>
+<h5>Stylist Last Name: @Html.DisplayFor(model => model.StylistLastName)</h5>
 
 @using (Html.BeginForm())
 {
@@ -16,4 +16,4 @@
 <hr />
 <p>@Html.ActionLink("Edit Stylist", "Edit", new { id = Model.StylistId })</p>
 <p>@Html.ActionLink("Back to stylists", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p> *@
+<p>@Html.ActionLink("Home", "Index", "Home")</p> 
