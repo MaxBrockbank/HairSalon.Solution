@@ -20,7 +20,8 @@ else
   <ul>
   @foreach (var join in Model.Stylists)
   {
-    <li>@join.Stylist.StylistFirstName @join.Stylist.StylistLastName</li>
+    <li>@Html.ActionLink($"{@join.Stylist.StylistFirstName + " " + @join.Stylist.StylistLastName}", "Details", "Stylists", new {id=join.Stylist.StylistId}, null)</li>
+  
     @using (Html.BeginForm("DeleteStylist", "Clients"))
     {
       @Html.Hidden("joinId", @join.ClientStylistId)

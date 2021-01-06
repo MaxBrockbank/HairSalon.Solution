@@ -90,12 +90,12 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteClient(int joinId)
+    public ActionResult DeleteClient(int joinId, int StylistId)
     {
       var joinEntry = _db.ClientStylist.FirstOrDefault(entry=>entry.ClientStylistId == joinId);
       _db.ClientStylist.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Stylists", new {id=StylistId});
     }
   }
 }

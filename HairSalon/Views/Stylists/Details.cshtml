@@ -24,7 +24,7 @@ else{
   @using (Html.BeginForm("DeleteClient", "Stylists"))
     {
       @Html.Hidden("joinId", @join.ClientStylistId)
-      @*@Html.Hidden("stylistId", @model.StylistId) *@
+      @Html.HiddenFor(model=>model.StylistId)
       <input type="submit" Value="Delete" />
     }
   }
@@ -39,3 +39,9 @@ else{
 <p>@Html.ActionLink("Delete Stylist", "Delete", new { id = Model.StylistId })</p>
 <p>@Html.ActionLink("Back to all stylists", "Index")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+@*url	A field for entering a URL. Looks like a text input, but has validation parameters and relevant keyboard in supporting browsers and devices with dynamic keyboards.	
+
+dirname	text, search	Name of form field to use for sending the element's directionality in form submission
+
+formaction	image, submit	URL to use for form submission*@
