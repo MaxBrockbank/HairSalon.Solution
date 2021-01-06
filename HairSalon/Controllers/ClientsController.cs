@@ -67,6 +67,26 @@ namespace HairSalon.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult AddStylist(int id)
+    {
+      var thisClient = _db.Clients.FirstOrDefault(clients=>clients.ClientId==id);
+      ViewBag.StylistId = new SelectList((from s in _db.Stylists select new {StylistId=s.StylistId, FullName=s.StylistFirstName + " " + s.StylistLastName}), "StylistId", "FullName", null);
+      return View(thisClient);
+    }
+    
+    [HttpPost]
+    public ActionResult AddStylist(Client client, int StylistId)
+    {
+      if(StylistId!=0)
+      {
+        _db.ClientStylist.Add(new ClientStylist(){StylistId = StylistId, ClientId = client.ClientId});
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+
+    }
+
+
     public ActionResult Delete(int id)
     {
       Client thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
@@ -78,6 +98,15 @@ namespace HairSalon.Controllers
     {
       Client thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
       _db.Clients.Remove(thisClient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult DeleteStylist(int joinId)
+    {
+      var joinEntry = _db.ClientStylist.FirstOrDefault(entry=>entry.ClientStylistId == joinId);
+      _db.ClientStylist.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

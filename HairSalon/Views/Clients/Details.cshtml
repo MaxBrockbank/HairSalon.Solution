@@ -21,7 +21,7 @@ else
   @foreach (var join in Model.Stylists)
   {
     <li>@join.Stylist.StylistFirstName @join.Stylist.StylistLastName</li>
-    @using (Html.BeginForm("DeleteConfirmed", "Clients"))
+    @using (Html.BeginForm("DeleteStylist", "Clients"))
     {
       @Html.Hidden("joinId", @join.ClientStylistId)
       <input type="submit" Value="Delete" />
@@ -36,6 +36,7 @@ else
 
 
 <hr />
+<p>@Html.ActionLink("Add Stylist", "AddStylist", new{id=Model.ClientId})</p>
 <p>@Html.ActionLink("Edit client", "Edit", new { id = Model.ClientId})</p>
 <p>@Html.ActionLink("Delete client", "Delete", new { id = Model.ClientId})</p>
 <p>@Html.ActionLink("Back to clients", "Index")</p>
