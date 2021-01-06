@@ -1,0 +1,19 @@
+@{
+  Layout="_Layout";
+}
+
+@model HairSalon.Models.Stylist
+
+<h2>Add client to @Html.DisplayFor(model=>model.StylistFirstName) @Html.DisplayFor(model=>model.StylistLastName)</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model=>model.StylistId)
+
+  @Html.Label("Select Client")
+  @Html.DropDownList("ClientId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to stylists", "Index")</p>
