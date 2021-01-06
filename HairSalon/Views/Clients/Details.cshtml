@@ -6,9 +6,34 @@
 
 <h2>Client Details</h2>
 <hr />
-<h4>@Html.DisplayNameFor(model => model.ClientFirstName): @Html.DisplayFor(model => model.ClientFirstName)</h4>
-<h4>@Html.DisplayNameFor(model => model.ClientLastName): @Html.DisplayFor(model => model.ClientLastName)</h4>
-<h5>Stylist: @Html.DisplayFor(model => model.Stylist.StylistFirstName) @Html.DisplayFor(model => model.Stylist.StylistLastName)</h5>
+<h4>Client First Name: @Html.DisplayFor(model => model.ClientFirstName)</h4>
+<h4>Client Last Name: @Html.DisplayFor(model => model.ClientLastName)</h4>
+@* <h5>Stylist: @Html.DisplayFor(model => model.Stylist.StylistFirstName) @Html.DisplayFor(model => model.Stylist.StylistLastName)</h5> *@
+
+@if(Model.Stylists.Count == 0)
+{
+  <p>This client does not belong to any Stylist</p>
+}
+else
+{
+  <p>Stylist the client belongs to:</p>
+  <ul>
+  @foreach (var join in Model.Stylists)
+  {
+    <li>@join.Stylist.StylistFirstName @join.Stylist.StylistLastName</li>
+    @using (Html.BeginForm("DeleteConfirmed", "Clients"))
+    {
+      @Html.Hidden("joinId", @join.ClientStylistId)
+      <input type="submit" Value="Delete" />
+    }
+  }
+  </ul>
+}
+
+
+
+
+
 
 <hr />
 <p>@Html.ActionLink("Edit client", "Edit", new { id = Model.ClientId})</p>
@@ -16,3 +41,4 @@
 <p>@Html.ActionLink("Back to clients", "Index")</p>
 <p>@Html.ActionLink("Back to all stylists", "Index", "Stylists")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
+

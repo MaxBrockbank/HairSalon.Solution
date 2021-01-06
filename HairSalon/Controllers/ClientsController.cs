@@ -17,8 +17,7 @@ namespace HairSalon.Controllers
 
     public ActionResult Index()
     {
-      List<Client> model = _db.Clients.Include(clients => clients.Stylist).ToList();
-      return View(model);
+      return View(_db.Clients.ToList());
     }
 
     public ActionResult Create()
@@ -28,16 +27,24 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Client client)
+    public ActionResult Create(Client client, int StylistId)
     {
       _db.Clients.Add(client);
+      if (StylistId !=0 )
+      {
+        _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      Client thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
+      var thisClient=_db.Clients
+        .Include(client=>client.Stylists)
+        .ThenInclude(join=>join.Stylist)
+        .FirstOrDefault(client=>client.ClientId==id);
+      
       return View(thisClient);
     }
 
@@ -49,8 +56,12 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Client client)
+    public ActionResult Edit(Client client, int StylistId)
     {
+      if(StylistId != 0)
+      {
+        _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+      }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");

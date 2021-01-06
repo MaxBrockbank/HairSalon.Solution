@@ -16,12 +16,12 @@
   @Html.LabelFor(model =>model.ClientLastName)
   @Html.EditorFor(model =>model.ClientLastName)
 
-  @Html.LabelFor(model => model.Stylist)
-  @Html.DropDownList("StylistId")
+  @Html.Label("Select Stylist");
+  @Html.DropDownList("StylistId");
 
   <input type="submit" value="Save" />
 }
 <hr />
 <p>@Html.ActionLink("Delete client", "Delete", new { id = Model.ClientId})</p>
 <p>@Html.ActionLink("Back to clients", "Index")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p> 
