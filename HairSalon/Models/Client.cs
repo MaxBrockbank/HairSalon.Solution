@@ -14,4 +14,6 @@ namespace HairSalon.Models
     public string ClientLastName { get; set; }
     public ICollection<ClientStylist> Stylists {get; }
   }
+
+
 }

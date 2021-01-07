@@ -30,10 +30,11 @@ namespace HairSalon.Controllers
     public ActionResult Create(Client client, int StylistId)
     {
       _db.Clients.Add(client);
-      if (StylistId !=0 )
-      {
-        _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
-      }
+        if (StylistId !=0 )
+          {
+            _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+          }
+
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -58,9 +59,12 @@ namespace HairSalon.Controllers
     [HttpPost]
     public ActionResult Edit(Client client, int StylistId)
     {
-      if(StylistId != 0)
+      foreach(var relationship in _db.ClientStylist)
       {
-        _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+        if ((StylistId !=0 && StylistId != relationship.StylistId || client.ClientId != relationship.ClientId))
+          {
+            _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+          }
       }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
@@ -77,10 +81,19 @@ namespace HairSalon.Controllers
     [HttpPost]
     public ActionResult AddStylist(Client client, int StylistId)
     {
-      if(StylistId!=0)
-      {
-        _db.ClientStylist.Add(new ClientStylist(){StylistId = StylistId, ClientId = client.ClientId});
-      }
+      var counter = 0;
+      foreach(ClientStylist relationship in _db.ClientStylist)
+        {
+          if ((StylistId !=0 && StylistId != relationship.StylistId || client.ClientId != relationship.ClientId))
+            {
+              counter++;
+            }
+        }
+        var databaseSize=_db.ClientStylist.Count();
+        if(counter == databaseSize)
+        {
+          _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+        }
       _db.SaveChanges();
       return RedirectToAction("Index");
 
