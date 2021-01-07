@@ -25,6 +25,7 @@ else
     @using (Html.BeginForm("DeleteStylist", "Clients"))
     {
       @Html.Hidden("joinId", @join.ClientStylistId)
+      @Html.HiddenFor(model =>model.ClientId)
       <input type="submit" Value="Delete" />
     }
   }

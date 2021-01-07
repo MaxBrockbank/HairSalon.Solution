@@ -103,12 +103,12 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteStylist(int joinId)
+    public ActionResult DeleteStylist(int joinId, int ClientId)
     {
       var joinEntry = _db.ClientStylist.FirstOrDefault(entry=>entry.ClientStylistId == joinId);
       _db.ClientStylist.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Clients", new {id=ClientId});
     }
   }
 }
