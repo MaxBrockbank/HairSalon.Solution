@@ -1,25 +1,48 @@
 # <span style="color:#0ec2b8">_Hair Salon Client Tracker_</span>
 
-#### _Eau Claire's Salon app, 01/02/2021_
+#### _Eau Claire's Salon app_
+####_Initialization Date: 01/06/2021_
 
-#### By _**Nataliya Zhuravleva**_
+#### By _**Nataliya Zhuravleva, Max Brockbank**_
 
 ## <span style="color:#0ec2b8">Description</span>
 
-_An MVC application to help Eau Claire's Salon manage the empoyees and clients._
+_This hair salon application is built utilizing C# ASP.NET Core, its ORM Entity and MySQL Database (and Workbench) to create an MVC application for hair salon managers to keep track of stylists, their clients and those clients appointments._ 
+
 
 ## <span style="color:#0ec2b8">Setup/Installation Requirements</span>
-### <span style="color:#c4f4ef">Open Online</span>
-_This opportunity will be added later._
-### <span style="color:#c4f4ef">Open Locally</span>
+
+### <span style="color:#c4f4ef">Cloning the project</span>
 1. _Navigate to my [Hair Salon repo](https://github.com/NataliyaZhuravleva/HairSalon.Solution) at https://github.com/NataliyaZhuravleva/HairSalon.Solution_ to view the project files and commits.
 2. _Click on the green button labeled "Code"_ to copy repository URL.
 3. _Clone the repository to your local machine_ by opening your machine terminal and using the command "git clone https://github.com/NataliyaZhuravleva/HairSalon.Solution".
 4. _Navigate to the folder "/HairSalon/" to see coding._
 6. _To use this application you will need to install .NET. Please, see instructions below._
 
-### <span style="color:#0ec2b8">.NET Installation</span> 
+### <span style="color:#c4f4ef">Downloading the project</span>
+1. _Navigate to my [Hair Salon repo](https://github.com/NataliyaZhuravleva/HairSalon.Solution) at https://github.com/NataliyaZhuravleva/HairSalon.Solution_ to view the project files and commits.
+2. _Click on the green button labeled "Code"_ to copy repository URL.
+3. _Clone the repository to your local machine_ by opening your machine terminal and using the command "git clone https://github.com/NataliyaZhuravleva/HairSalon.Solution".
 
+### <span style="color:#c4f4ef">App Settings</span>
+1. Open in the HairSalon.Solution/HairSalon/ directory the file named appsettings.json
+2. Change the server, port, and user id as necessary. Replace 'YourPassword' with relevant MySQL password (set at installation of MySQL).
+```
+{
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=nataliya_zhuravleva.sql;uid=root;pwd=YourPassword;"
+  }
+}
+```
+
+### <span style="color:#0ec2b8">Required Technologies (see install instructions below)</span>
+* C# .NET Core Ver 2.2.0
+* MySQL Ver 8.0.15 & MySQL Workbench
+* Modern Web Broswer
+* Text Editor (e.g.VisualStudio Code)
+
+
+### <span style="color:#0ec2b8">.NET Installation</span> 
 
 #### <span style="color:#c4f4ef">Mac</span> 
 
@@ -81,6 +104,21 @@ _In the command line run the following commands to install packages:
 1. $ dotnet add package Microsoft.EntityFrameworkCore -v 2.2.0
 2. $ dotnet add package Pomelo.EntityFrameworkCore.MySql -v 2.2.0
 
+
+### <span style="color:#0ec2b8">Import Database Structure with Entity Framework Core</span>
+1. Navigate to the `HairSalon.Solution/HairSalon` directory in your terminal.
+2. Run the command `dotnet ef database update` which will use the mirgrations folder to create the MySQL Database using Entity Framework Core.
+3. (_OPTIONAL_) If you need to make adjustments to the database, use the command `dotnet ef migrations add <NameOfNewMigration>` and then run `dotnet ef database update` again to apply the changes.
+
+### <span style="color:#0ec2b8">Import Database Structure with MySQL Workbench</span>
+1. Open MySQL Workbench and enter your password.
+2. Go to the nav bar at the top, click on Server > Data Import.
+3. Use the the option Import from Self-Contained File.
+4. Set the Default Target Schema or create a new schema.
+5. Select all Schema Objects you wish to import.
+6. At the bottom, ensure the option Dump Structure and Data is selected.
+7. Click Start Import.
+
 ### <span style="color:#0ec2b8">Running Program</span> 
 #### <span style="color:#c4f4ef">Run Application</span>
 
@@ -97,8 +135,9 @@ _No known bags_
 
 ## <span style="color:#0ec2b8">Support and contact details</span>
 
-_If you have any questions, ideas or concerns, please, contact me at [natalindria@gmail.com](mailto:natalindria@gmail.com)_
-
+_If you have any questions, ideas or concerns, please, contact us at:_
+* _[natalindria@gmail.com](mailto:natalindria@gmail.com)_
+* _[maxbrockbank1999@gmail.com](mailto:maxbrockbank1999@gmail.com)_
 
 ## <span style="color:#0ec2b8">Technologies Used</span>
 
@@ -114,4 +153,4 @@ _If you have any questions, ideas or concerns, please, contact me at [natalindri
 
 *This software is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license*
 
-Copyright (c) 2020 **_Nataliya Zhuravleva_**
+Copyright (c) 2020 **_Nataliya Zhuravleva, Max Brockbank_**
