@@ -59,16 +59,18 @@ namespace HairSalon.Controllers
     [HttpPost]
     public ActionResult Edit(Client client, int StylistId)
     {
-      foreach(var relationship in _db.ClientStylist)
+      if(StylistId !=0)
       {
-        if ((StylistId !=0 && StylistId != relationship.StylistId || client.ClientId != relationship.ClientId))
-          {
-            _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
-          }
+        var returnedJoin = _db.ClientStylist
+        .Any(join=>join.ClientId == client.ClientId && join.StylistId==StylistId);
+        if(!returnedJoin)
+        {
+          _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
+        }
       }
       _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Clients", new {id=client.ClientId});
     }
 
     public ActionResult AddStylist(int id)
@@ -81,24 +83,19 @@ namespace HairSalon.Controllers
     [HttpPost]
     public ActionResult AddStylist(Client client, int StylistId)
     {
-      var counter = 0;
-      foreach(ClientStylist relationship in _db.ClientStylist)
-        {
-          if ((StylistId !=0 && StylistId != relationship.StylistId || client.ClientId != relationship.ClientId))
-            {
-              counter++;
-            }
-        }
-        var databaseSize=_db.ClientStylist.Count();
-        if(counter == databaseSize)
+      if(StylistId !=0)
+      {
+        var returnedJoin = _db.ClientStylist
+        .Any(join=>join.ClientId == client.ClientId && join.StylistId==StylistId);
+        if(!returnedJoin)
         {
           _db.ClientStylist.Add(new ClientStylist(){StylistId=StylistId, ClientId=client.ClientId});
         }
+      }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Clients", new {id=client.ClientId});
 
     }
-
 
     public ActionResult Delete(int id)
     {

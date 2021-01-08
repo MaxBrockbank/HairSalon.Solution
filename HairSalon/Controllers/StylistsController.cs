@@ -54,7 +54,7 @@ namespace HairSalon.Controllers
     {
       _db.Entry(stylist).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Stylists", new {id=stylist.StylistId});
     }
     public ActionResult Delete(int id)
     {
@@ -83,10 +83,15 @@ namespace HairSalon.Controllers
     {
       if (ClientId!=0)
       {
+        var returnedJoin = _db.ClientStylist
+        .Any(join=>join.StylistId == stylist.StylistId && join.ClientId==ClientId);
+        if (!returnedJoin)
+        {
         _db.ClientStylist.Add(new ClientStylist(){ClientId=ClientId, StylistId=stylist.StylistId});
+        }
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", "Stylists", new{id=stylist.StylistId});
     }
 
     [HttpPost]
